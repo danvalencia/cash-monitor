@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  maquinet_id: 1
+  name: MyString
+  phone_number: MyString
+  email: MyString
+
+two:
+  maquinet_id: 1
+  name: MyString
+  phone_number: MyString
+  email: MyString

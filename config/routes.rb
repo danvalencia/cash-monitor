@@ -1,4 +1,6 @@
 Cashmonitor2::Application.routes.draw do
+  post "sessions/new_coin"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

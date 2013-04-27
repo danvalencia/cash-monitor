@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 
+  name: MyString
+  coin_value: 
+  coin_time: 
+  location: MyString
+
+two:
+  user_id: 
+  name: MyString
+  coin_value: 
+  coin_time: 
+  location: MyString

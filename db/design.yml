@@ -1,0 +1,41 @@
+Users:
+	username (char, 50)
+	password (char, 50)
+	first_name (char, 50)
+	last_name (char, 100)
+	email (char, 70)
+	phone_number (char, 15)
+
+Maquinets:
+	user_id (int, 5)
+	name (char, 50)
+	coin_value (int, 5)
+	coin_time (int, 5)
+	location (char, 200)
+
+Contacts:
+	maquinet_id (int, 5)
+	name (char, 100)
+	phone_number (char, 15)
+	email (char 70)
+
+Sessions:
+	maquinet_id (int, 5)
+	coin_count (int, 5)
+	coin_value (int, 5)
+	coin_time (int, 5)
+	print_count (int, 5)
+	print_time (int, 5)
+	call_count (int, 5)
+	call_value (int, 5)
+	call_time (int, 5)
+	start_time (timestamp)
+	end_time (calc timestamp)
+
+Status:
+	maquinet_id (int, 5)
+	start_ping (timestamp)
+	last_ping (timestamp)
+
+
+

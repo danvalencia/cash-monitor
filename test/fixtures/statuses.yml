@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  maquinet_id: 1
+  start_ping: 2013-04-27 14:59:22
+  last_ping: 2013-04-27 14:59:22
+
+two:
+  maquinet_id: 1
+  start_ping: 2013-04-27 14:59:22
+  last_ping: 2013-04-27 14:59:22
