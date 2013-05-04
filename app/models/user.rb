@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :first_name, :last_name, :password, :phone_number, :username
-  has_many :maquinets
+  has_many :machines
   validates :email, :presence => true, :allow_blank => false, :uniqueness => true
   validates :first_name, :presence => true, :allow_blank => false, :uniqueness => false
   validates :last_name, :presence => true, :allow_blank => false, :uniqueness => false
