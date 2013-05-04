@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427205852) do
+ActiveRecord::Schema.define(:version => 20130504201631) do
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(:version => 20130427205852) do
     t.integer  "coin_value"
     t.integer  "coin_time"
     t.string   "location"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "contact_id"
+    t.string   "machine_uuid"
   end
 
   create_table "sessions", :force => true do |t|
@@ -44,8 +45,9 @@ ActiveRecord::Schema.define(:version => 20130427205852) do
     t.integer  "call_time"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "session_uuid"
   end
 
   create_table "statuses", :force => true do |t|
