@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130427205852) do
+ActiveRecord::Schema.define(:version => 20130504205347) do
 
   create_table "contacts", :force => true do |t|
     t.string   "name"
@@ -21,19 +21,21 @@ ActiveRecord::Schema.define(:version => 20130427205852) do
     t.datetime "updated_at",   :null => false
   end
 
-  create_table "maquinets", :force => true do |t|
+  create_table "machines", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
     t.integer  "coin_value"
     t.integer  "coin_time"
     t.string   "location"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "contact_id"
+    t.string   "machine_uuid"
+    t.string   "type"
   end
 
   create_table "sessions", :force => true do |t|
-    t.integer  "maquinet_id"
+    t.integer  "machine_id"
     t.integer  "coin_count"
     t.integer  "coin_value"
     t.integer  "coin_time"
@@ -44,16 +46,17 @@ ActiveRecord::Schema.define(:version => 20130427205852) do
     t.integer  "call_time"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "session_uuid"
   end
 
   create_table "statuses", :force => true do |t|
-    t.integer  "maquinet_id"
+    t.integer  "machine_id"
     t.datetime "start_ping"
     t.datetime "last_ping"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
