@@ -1,4 +1,9 @@
 Cashmonitor2::Application.routes.draw do
+
+  resources :maquinets
+
+  root :to => "maquinets#index"
+
   post "sessions/update"
 
   # The priority is based upon order of creation:
