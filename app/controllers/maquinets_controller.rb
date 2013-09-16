@@ -4,9 +4,11 @@ class MaquinetsController < ApplicationController
   end
 
   def show
+    @maquinet = Maquinet.find params[:id]
   end
 
   def edit
+    @maquinet = Maquinet.find params[:id]
   end
 
   def index
