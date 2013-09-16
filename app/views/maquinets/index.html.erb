@@ -1,13 +1,18 @@
-<h1>Maquinet#index</h1>
-<%= link_to "New Maquinet", new_maquinet_path%>
-<% @maquinets.each do |m| %>
- <div class="Maquinet">
-	<div>Maquinet_uuid: <span><%=m.machine_uuid %></span></div>
-	<div>Maquinet_name: <span><%=m.name %></span></div>
-	<div>Maquinet_coin_value: <span><%=m.coin_value %></span></div>
-	<div>Maquinet_coin_time: <span><%=m.coin_time %></span></div>
-	<div></div>
-	<div></div>
-	<div></div> 	
- </div>
-<% end %>
+<h4>Maquinets</h4>
+<%= link_to "Crear Maquinet", new_maquinet_path, class: 'btn btn-primary' %>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Nombre</th>
+			<th>Edit</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @maquinets.each do |m| %>
+			<tr>
+				<td><%=link_to m.name, m%></td>
+				<td></td>
+			</tr>	
+		<% end %>
+	</tbody>
+	</table>

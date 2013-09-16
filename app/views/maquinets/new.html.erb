@@ -1,42 +1,48 @@
-<h1>Maquinet#new</h1>
-<%= form_for(@maquinet) do |f| %>
-<%= render_error_messages %>
-<div id="post_title">
- <span id="post_title_field">
- 	<%= f.text_field(:name, :size => 100) %>
- 	</span>   
- <label for="title" id="post_title_label" class="post_form_label">
- 	name
- </label>
+<h1>Crear Maquinet</h1>
+<%= form_for(@maquinet, html: {class: "form-horizontal"}) do |f| %>
+<% if @maquinet.errors.any? %>
+	<div class="alert alert-error">
+		<%= render_error_messages %>
+	</div>
+<% end %>
+<div class="control-group">
+ 	<label for="name" class="control-label">
+ 		Nombre
+	</label>
+	<div class="controls">
+ 		<%= f.text_field(:name, class: "control") %>
+ 	</div>   
 </div>
-<div id="post_excerpt">
- <span id="post_excerpt_field">
- 	<%= f.text_field(:coin_value, :size => 50) %>
- 	</span>   
- <label for="excerpt" id="post_excerpt_label" class="post_form_label">
- 	coin value
- </label>
+<div class="control-group">
+	<label for="coin_value" class="control-label">
+	 	Valor de Moneda
+	</label>
+	<div class="controls">
+	 	<%= f.text_field(:coin_value, class: "control") %>
+	</div>   
 </div>
-<div id="post_excerpt">
- <span id="post_excerpt_field">
- 	<%= f.text_field(:coin_time, :size => 50) %>
- 	</span>   
- <label for="excerpt" id="post_excerpt_label" class="post_form_label">
- 	coin time
- </label>
+<div class="control-group">
+	<label for="coin_time" class="control-label">
+	 	Duración de Moneda (minutos)
+	</label>
+	<div class="controls">
+	 	<%= f.text_field(:coin_time, class: "control") %>
+	</div>   
 </div>
-<div id="post_body">
- <div class="wmd-panel" id="post_body_text">
-  <div id="wmd-button-bar">Location</div>
- 	<%= f.text_area(:location, :class => "wmd-input", :id => "wmd-input")%>
- </div> 
- preview:
- 	<div id="wmd-preview" class="wmd-panel wmd-preview"></div>  
+<div class="control-group">
+	<label for="location" class="control-label">
+	    Dirección	
+	</label>
+	<div class="controls">
+	 	<%= f.text_area(:location, class: "control")%>
+	</div>
 </div>
-<span id="post_submit">
- <%= f.submit %>
-</span>
-<span>
- <%= link_to "cancel", root_path %>
-</span>
+<div class="control-group">
+	<div class="controls">
+		<%= f.submit class: "btn btn-primary" %>
+		 <%= link_to "cancel", root_path %>
+	</div>
+	<div class="controls">
+	</div>
+</div>
 <%end%>
