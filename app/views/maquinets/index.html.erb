@@ -1,18 +1,17 @@
-<h4>Maquinets</h4>
-<%= link_to "Crear Maquinet", new_maquinet_path, class: 'btn btn-primary' %>
 <table class="table table-hover">
 	<thead>
 		<tr>
 			<th>Nombre</th>
-			<th>Edit</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<% @maquinets.each do |m| %>
 			<tr>
 				<td><%=link_to m.name, m%></td>
-				<td></td>
+				<td><a href="<%= edit_maquinet_path(m) %>"><i class="icon-pencil"></i> Editar</a></td>
 			</tr>	
 		<% end %>
 	</tbody>
-	</table>
+</table>
+<%= link_to "Crear Maquinet", new_maquinet_path, class: 'btn btn-primary pull-right' %>

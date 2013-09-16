@@ -1,48 +1,46 @@
 <h1>Crear Maquinet</h1>
 <%= form_for(@maquinet, html: {class: "form-horizontal"}) do |f| %>
-<% if @maquinet.errors.any? %>
-	<div class="alert alert-error">
-		<%= render_error_messages %>
+	<% if @maquinet.errors.any? %>
+		<div class="alert alert-error">
+			<%= render_error_messages %>
+		</div>
+	<% end %>
+	<div class="control-group">
+	 	<label for="name" class="control-label">
+	 		Nombre
+		</label>
+		<div class="controls">
+	 		<%= f.text_field(:name, class: "control") %>
+	 	</div>   
 	</div>
-<% end %>
-<div class="control-group">
- 	<label for="name" class="control-label">
- 		Nombre
-	</label>
-	<div class="controls">
- 		<%= f.text_field(:name, class: "control") %>
- 	</div>   
-</div>
-<div class="control-group">
-	<label for="coin_value" class="control-label">
-	 	Valor de Moneda
-	</label>
-	<div class="controls">
-	 	<%= f.text_field(:coin_value, class: "control") %>
-	</div>   
-</div>
-<div class="control-group">
-	<label for="coin_time" class="control-label">
-	 	Duración de Moneda (minutos)
-	</label>
-	<div class="controls">
-	 	<%= f.text_field(:coin_time, class: "control") %>
-	</div>   
-</div>
-<div class="control-group">
-	<label for="location" class="control-label">
-	    Dirección	
-	</label>
-	<div class="controls">
-	 	<%= f.text_area(:location, class: "control")%>
+	<div class="control-group">
+		<label for="coin_value" class="control-label">
+		 	Valor de Moneda
+		</label>
+		<div class="controls">
+		 	<%= f.text_field(:coin_value, class: "control") %>
+		</div>   
 	</div>
-</div>
-<div class="control-group">
-	<div class="controls">
-		<%= f.submit class: "btn btn-primary" %>
-		 <%= link_to "cancel", root_path %>
+	<div class="control-group">
+		<label for="coin_time" class="control-label">
+		 	Duración de Moneda (minutos)
+		</label>
+		<div class="controls">
+		 	<%= f.text_field(:coin_time, class: "control") %>
+		</div>   
 	</div>
-	<div class="controls">
+	<div class="control-group">
+		<label for="location" class="control-label">
+		    Dirección	
+		</label>
+		<div class="controls">
+		 	<%= f.text_area(:location, class: "control")%>
+		</div>
 	</div>
-</div>
+	<div class="control-group">
+		<div class="controls">
+			<%= f.submit "Crear Maquinet", class: "btn btn-primary" %>
+			<%= link_to "Cancelar", root_path %>
+		</div>
+	</div>
 <%end%>
