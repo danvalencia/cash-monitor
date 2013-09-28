@@ -1,5 +1,7 @@
 Cashmonitor2::Application.routes.draw do
 
+  devise_for :users
+
   resources :maquinets
 
   root :to => "maquinets#index"
