@@ -1,17 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  username: MyString
-  password: MyString
-  first_name: MyString
-  last_name: MyString
-  email: MyString
-  phone_number: MyString
-
-two:
-  username: MyString
-  password: MyString
-  first_name: MyString
-  last_name: MyString
-  email: MyString
-  phone_number: MyString
+admin:
+  first_name: John
+  last_name: Doe
+  email: john@mysite.io
+  phone_number: 415-123-1234

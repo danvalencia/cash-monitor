@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+#  attr_accessible :coin_time, :coin_value, :location, :name, :user_id, :contact_id, :machine_uuid
+
+one:
+  user_id: 1
+  name: MyString
+  coin_value: 5
+  coin_time: 10
+  location: 'Ensenada, B.C.'
+  type: Maquinet
+
+two:
+  user_id: 2
+  name: MyString
+  coin_value: 2
+  coin_time: 5
+  location: 'Guadalajara, Jal'
+  type: Maquinet

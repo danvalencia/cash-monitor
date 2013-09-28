@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  maquinet_id: 1
+  machine_id: 1
   coin_count: 1
   coin_value: 1
   coin_time: 1
@@ -14,7 +14,7 @@ one:
   end_time: 2013-04-27 14:57:43
 
 two:
-  maquinet_id: 1
+  machine_id: 2
   coin_count: 1
   coin_value: 1
   coin_time: 1

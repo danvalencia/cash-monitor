@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
-  def new_coin
+  def update
+  	render json: { message: 'Session updated'}
   end
 end

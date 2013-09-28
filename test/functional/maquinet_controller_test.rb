@@ -1,18 +1,27 @@
 require 'test_helper'
 
-class MaquinetControllerTest < ActionController::TestCase
+class MaquinetsControllerTest < ActionController::TestCase
+  include Devise::TestHelpers
+
+  def setup
+    @request.env["devise.mapping"] = Devise.mappings[:admin]
+    sign_in users(:admin)
+    @maquinet_one = machines(:one)
+    @maquinet_two = machines(:two)
+  end
+
   test "should get new" do
     get :new
     assert_response :success
   end
 
   test "should get show" do
-    get :show
+    get :show, :id => @maquinet_one.id
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit
+    get :edit, :id => @maquinet_one.id
     assert_response :success
   end
 
@@ -27,12 +36,7 @@ class MaquinetControllerTest < ActionController::TestCase
   end
 
   test "should get update" do
-    get :update
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get :destroy
+    get :update, :id => @maquinet_one.id
     assert_response :success
   end
 

@@ -20,8 +20,8 @@ test:
   encoding: utf8
   database: mqn-test
   username: root
-  password: root
-  host: 127.0.0.1
+  password: m4qu1n3t
+  host: localhost
   port: 3306
 
 production:

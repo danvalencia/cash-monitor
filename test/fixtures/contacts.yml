@@ -1,13 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  maquinet_id: 1
-  name: MyString
-  phone_number: MyString
-  email: MyString
+  name: Jorge Perez
+  phone_number: 333-234-8899
+  email: jorge@miempresa.net
 
 two:
-  maquinet_id: 1
-  name: MyString
-  phone_number: MyString
-  email: MyString
+  name: Juan Gomez
+  phone_number: 333-123-12389
+  email: juan@miempresa.net
