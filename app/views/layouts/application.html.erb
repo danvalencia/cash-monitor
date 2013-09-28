@@ -47,8 +47,10 @@
           </a>
           <a class="brand" href="/">Cashmonitor II</a>
           <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Login", "/path1"  %></li>
+            <ul class="nav pull-right">
+              <% if user_signed_in? %>
+                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+              <% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
