@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+.login_form {
+	margin: auto;
+	float: none;
+}
