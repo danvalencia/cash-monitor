@@ -1,1 +1,9 @@
-<h2><%=@maquinet.name%></h2>
+<div class="page_header">
+	<h2><%=@maquinet.name%></h2>
+</div>
+
+Identificador de Maquinet: <%= @maquinet.machine_uuid %> <br>
+Tiempo de moneda: <%= @maquinet.coin_time %> segundos <br>
+Valor de moneda: <%= number_to_currency(@maquinet.coin_value)%> <br>
+Dirección: <%= @maquinet.location %> <br>
+Contacto: <%= @maquinet.contact_id %> <br>

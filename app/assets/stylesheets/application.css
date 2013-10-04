@@ -16,3 +16,9 @@
 	margin: auto;
 	float: none;
 }
+
+.page_header {
+	border-bottom: 1px solid #eeeeee;
+	margin: 20px 0 30px;
+	padding-bottom: 9px;
+}
