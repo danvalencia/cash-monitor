@@ -46,7 +46,11 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="/">Cashmonitor II</a>
+
           <div class="container-fluid nav-collapse">
+            <ul class="nav">
+              <li><%= link_to "Mis Maquinets", root_path  %></li>
+            </ul>
             <ul class="nav pull-right">
               <% if user_signed_in? %>
                 <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
@@ -59,17 +63,9 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Menú</li>
-              <li><%= link_to "Mis Maquinets", root_path  %></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        <div class="span9">
+        <div class="span12">
           <%= bootstrap_flash %>
-          
+        
           <!-- <div class="alert alert-info"><%= notice %></div> -->
           <!-- <div class="alert alert-error"><%= alert %></div> -->
           <%= yield %>

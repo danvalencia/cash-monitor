@@ -1,45 +1,64 @@
 <%= form_for(maquinet, html: {class: "form-horizontal"}) do |f| %>
-	<% if maquinet.errors.any? %>
-		<div class="alert alert-error">
-			<%= render_error_messages %>
+<% if maquinet.errors.any? %>
+	<div class="alert alert-error">
+		<%= render_error_messages %>
+	</div>
+<% end %>
+<div class="row-fluid">
+	<div class="span12">
+		<fieldset>
+			<legend>Información General</legend>	
+			<div class="control-group">
+				<label for="machine_uuid" class="control-label">
+					Identificador de Maquinet:
+				</label>
+				<div class="controls">
+			 		<%= f.text_field(:machine_uuid, class: "control uneditable-input input-xlarge", disabled: "disabled") %>
+				</div>
+			</div>
+			<div class="control-group">
+			 	<label for="name" class="control-label">
+			 		Nombre:
+				</label>
+				<div class="controls">
+			 		<%= f.text_field(:name, class: "control input-xlarge") %>
+			 	</div>   
+			</div>
+			<div class="control-group">
+				<label for="location" class="control-label">
+				    Dirección:	
+				</label>
+				<div class="controls">
+				 	<%= f.text_area(:location, class: "control input-xlarge", rows: 5)%>
+				</div>
+			</div>
+			<div>Contacto: </div><div><%= @maquinet.contact_id %></div>
+		</fieldset>
+		<fieldset>
+			<legend>Configuración de Moneda</legend>
+			<div class="control-group">
+				<label for="coin_time" class="control-label">
+				 	Tiempo de Moneda (minutos):
+				</label>
+				<div class="controls">
+				 	<%= f.text_field(:coin_time, class: "control") %>
+				</div>   
+			</div>
+			<div class="control-group">
+				<label for="coin_value" class="control-label">
+				 	Valor de Moneda:
+				</label>
+				<div class="controls">
+				 	<%= f.text_field(:coin_value, class: "control") %>
+				</div>   
+			</div>
+		</fieldset>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit "Guardar", class: "btn btn-primary" %>
+				<%= link_to "Cancelar", root_path, class: "btn" %>
+				</div>
 		</div>
-	<% end %>
-	<div class="control-group">
-	 	<label for="name" class="control-label">
-	 		Nombre
-		</label>
-		<div class="controls">
-	 		<%= f.text_field(:name, class: "control") %>
-	 	</div>   
 	</div>
-	<div class="control-group">
-		<label for="coin_value" class="control-label">
-		 	Valor de Moneda
-		</label>
-		<div class="controls">
-		 	<%= f.text_field(:coin_value, class: "control") %>
-		</div>   
-	</div>
-	<div class="control-group">
-		<label for="coin_time" class="control-label">
-		 	Duración de Moneda (minutos)
-		</label>
-		<div class="controls">
-		 	<%= f.text_field(:coin_time, class: "control") %>
-		</div>   
-	</div>
-	<div class="control-group">
-		<label for="location" class="control-label">
-		    Dirección	
-		</label>
-		<div class="controls">
-		 	<%= f.text_area(:location, class: "control")%>
-		</div>
-	</div>
-	<div class="control-group">
-		<div class="controls">
-			<%= f.submit "Crear Maquinet", class: "btn btn-primary" %>
-			<%= link_to "Cancelar", root_path %>
-		</div>
-	</div>
+</div>
 <%end%>

@@ -1,9 +1,47 @@
-<div class="page_header">
-	<h2><%=@maquinet.name%></h2>
-</div>
+<h2><%=@maquinet.name%>    <small><%= link_to('Editar', edit_maquinet_path(@maquinet)) %></small></h2>
 
-Identificador de Maquinet: <%= @maquinet.machine_uuid %> <br>
-Tiempo de moneda: <%= @maquinet.coin_time %> segundos <br>
-Valor de moneda: <%= number_to_currency(@maquinet.coin_value)%> <br>
-Dirección: <%= @maquinet.location %> <br>
-Contacto: <%= @maquinet.contact_id %> <br>
+<div class="row-fluid">
+	<div class="span6">
+		<fieldset>
+			<legend>Información General</legend>	
+			<div>
+				<span class="span4">Identificador de Maquinet: </span> <span class="span8"><%= @maquinet.machine_uuid %></span>
+			</div>
+			<div>
+				<span class="span4">Dirección: </span><span class="span8"><%= @maquinet.location %> </span>
+			</div>
+			<div>
+				<span class="span4">Contacto: </span><span class="span8"><%= @maquinet.contact_id %></span>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Números Totales</legend>	
+			<div>
+				<span class="span4">Total de monedas: </span> <span class="span8"></span>
+			</div>
+			<div>
+				<span class="span4">Ganancia al Año: </span> <span class="span8"></span>
+			</div>
+			<div>
+				<span class="span4">Ganancia al Mes: </span> <span class="span8"></span>
+			</div>
+			<div>
+				<span class="span4">Ganancia al Día: </span> <span class="span8"></span>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Configuración de Moneda</legend>
+			<div>
+				<span class="span4">Tiempo de moneda: </span><span class="span8"><%= @maquinet.coin_time %> segundos</span>
+			</div>
+			<div>
+				<span class="span4">Valor de moneda: </span><span class="span8"><%= number_to_currency(@maquinet.coin_value)%></span>
+			</div>
+		</fieldset>
+	</div>
+	<div class="span6">
+		<fieldset>
+			<legend>Gráficos</legend>
+		</fieldset>		
+	</div>
+</div>
