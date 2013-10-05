@@ -11,7 +11,13 @@
 				<span class="span4">Dirección: </span><span class="span8"><%= @maquinet.location %> </span>
 			</div>
 			<div>
-				<span class="span4">Contacto: </span><span class="span8"><%= @maquinet.contact_id %></span>
+				<span class="span4">Responsable: </span><span class="span8"><%= @maquinet.contact_name %></span>
+			</div>
+			<div>
+				<span class="span4">Número de Contacto: </span><span class="span8"><%= number_to_phone(@maquinet.contact_phone_number, area_code: true)%></span>
+			</div>
+			<div>
+				<span class="span4">Email de Contacto: </span><span class="span8"><%= @maquinet.contact_email %></span>
 			</div>
 		</fieldset>
 		<fieldset>

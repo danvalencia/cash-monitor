@@ -32,16 +32,44 @@
 				 	<%= f.text_area(:location, class: "control input-xlarge", rows: 5)%>
 				</div>
 			</div>
-			<div>Contacto: </div><div><%= @maquinet.contact_id %></div>
+		</fieldset>
+		<fieldset>
+			<legend>Información de Contacto</legend>	
+
+			<div class="control-group">
+				<label for="contact_name" class="control-label">
+				    Responsable:	
+				</label>
+				<div class="controls">
+				 	<%= f.text_field(:contact_name, class: "control input-xlarge")%>
+				</div>
+			</div>
+			<div class="control-group">
+				<label for="contact_phone_number" class="control-label">
+				    Número de contacto:	
+				</label>
+				<div class="controls">
+				 	<%= f.text_field(:contact_phone_number, class: "control input-xlarge")%>
+				</div>
+			</div>
+			<div class="control-group">
+				<label for="contact_email" class="control-label">
+				    Email del contacto:	
+				</label>
+				<div class="controls">
+				 	<%= f.email_field(:contact_email, class: "control input-xlarge")%>
+				</div>
+			</div>
 		</fieldset>
 		<fieldset>
 			<legend>Configuración de Moneda</legend>
 			<div class="control-group">
 				<label for="coin_time" class="control-label">
-				 	Tiempo de Moneda (minutos):
+				 	Tiempo de Moneda:
 				</label>
 				<div class="controls">
-				 	<%= f.text_field(:coin_time, class: "control") %>
+				 	<%= f.text_field(:coin_time, class: "control input-small") %>
+					<span class="add-on">minutos</span>
 				</div>   
 			</div>
 			<div class="control-group">
@@ -49,7 +77,8 @@
 				 	Valor de Moneda:
 				</label>
 				<div class="controls">
-				 	<%= f.text_field(:coin_value, class: "control") %>
+					<span class="add-on">$</span>
+				 	<%= f.text_field(:coin_value, class: "control input-small") %>
 				</div>   
 			</div>
 		</fieldset>

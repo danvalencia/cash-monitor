@@ -15,6 +15,7 @@ class MaquinetsController < ApplicationController
 
   def index
     @maquinets = Maquinet.find :all
+    logger.debug "Maquinets: #{@maquinets}"
   end
 
   def create
@@ -28,6 +29,16 @@ class MaquinetsController < ApplicationController
   end
 
   def update
+    @maquinet = Maquinet.find params[:id]
+    if @maquinet
+      if(@maquinet.update_attributes params[:maquinet])
+        redirect_to @maquinet
+      else
+        render :action => :edit
+      end
+    else
+      render action: :edit
+    end
   end
 
   def destroy
