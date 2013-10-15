@@ -8,11 +8,13 @@ set :repository,  "git@bitbucket.org:danvalencia/cashmonitor-2.git"
 
 set :scm, :git
 
-role :web, "beta.apphakker.nl"                          # Your HTTP server, Apache/etc
-role :app, "beta.apphakker.nl"                          # This may be the same as your `Web` server
-role :db,  "beta.apphakker.nl", :primary => true # This is where Rails migrations will run
+production_server = "ec2-54-245-26-209.us-west-2.compute.amazonaws.com"
 
-set :user, "deploy"
+role :web, production_server                          # Your HTTP server, Apache/etc
+role :app, production_server                          # This may be the same as your `Web` server
+role :db,  production_server, :primary => true # This is where Rails migrations will run
+
+set :user, "ubuntu"
 set :use_sudo, false
 
 before "deploy:finalize_update" do
