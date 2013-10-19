@@ -26,7 +26,6 @@ class MaquinetsController < ApplicationController
   def create
     if current_user.admin?
       @maquinet = Maquinet.new(params[:maquinet])
-      @maquinet.machine_uuid = SecureRandom.uuid
       if @maquinet.save
         redirect_to @maquinet
       else

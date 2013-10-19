@@ -11,7 +11,7 @@ class Machine < ActiveRecord::Base
 
   validates_format_of :contact_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
 
-  before_create :generate_uuid
+  before_validation :generate_uuid, on: :create
 
   scope :with_user, ->(user) { where("user_id = ?", user.id)}
 
