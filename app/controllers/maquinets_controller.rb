@@ -14,18 +14,27 @@ class MaquinetsController < ApplicationController
   end
 
   def index
-    @maquinets = Maquinet.find :all
+    if current_user.admin?
+      @maquinets = Maquinet.find :all
+    else
+      @maquinets = Maquinet.with_user(current_user)
+    end
+
     logger.debug "Maquinets: #{@maquinets}"
   end
 
   def create
-    @maquinet = Maquinet.new(params[:maquinet])
-    @maquinet.machine_uuid = SecureRandom.uuid
-    if @maquinet.save
-      redirect_to @maquinet
+    if current_user.admin?
+      @maquinet = Maquinet.new(params[:maquinet])
+      @maquinet.machine_uuid = SecureRandom.uuid
+      if @maquinet.save
+        redirect_to @maquinet
+      else
+        render :action => :new
+      end  
     else
-      render :action => :new
-    end  
+      render status: 401 
+    end
   end
 
   def update

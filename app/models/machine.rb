@@ -1,5 +1,5 @@
 class Machine < ActiveRecord::Base
-  attr_accessible :coin_time, :coin_value, :location, :name, :user_id, :machine_uuid, :contact_name, :contact_phone_number, :contact_email
+  attr_accessible :coin_time, :coin_value, :location, :name, :machine_uuid, :contact_name, :contact_phone_number, :contact_email
   belongs_to :user
   has_many :sessions
   has_many :statuses
@@ -12,6 +12,8 @@ class Machine < ActiveRecord::Base
   validates_format_of :contact_email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create
 
   before_create :generate_uuid
+
+  scope :with_user, ->(user) { where("user_id = ?", user.id)}
 
   def generate_uuid
 	  new_uuid = SecureRandom.uuid
