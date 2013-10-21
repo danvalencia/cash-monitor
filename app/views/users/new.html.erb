@@ -1,0 +1,72 @@
+<%= form_for(@user, html: {class: "form-horizontal"}) do |f| %>
+<% if @user.errors.any? %>
+	<div class="alert alert-error">
+		<%= render_error_messages_for(@user) %>
+	</div>
+<% end %>
+<div class="row-fluid">
+	<div class="span12">
+		<fieldset>
+			<legend>Información General</legend>	
+			<div class="control-group">
+				<label for="first_name" class="control-label">
+					Nombre:
+				</label>
+				<div class="controls">
+			 		<%= f.text_field(:first_name, class: "control input-xlarge") %>
+				</div>
+			</div>
+			<div class="control-group">
+			 	<label for="last_name" class="control-label">
+			 		Apellidos:
+				</label>
+				<div class="controls">
+			 		<%= f.text_field(:last_name, class: "control input-xlarge") %>
+			 	</div>   
+			</div>
+			<div class="control-group">
+				<label for="email" class="control-label">
+				    Email:	
+				</label>
+				<div class="controls">
+				 	<%= f.email_field(:email, class: "control input-xlarge")%>
+				</div>
+			</div>
+			<div class="control-group">
+				<label for="phone_number" class="control-label">
+				    Teléfono:	
+				</label>
+				<div class="controls">
+				 	<%= f.phone_field(:phone_number, class: "control input-xlarge")%>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset>
+			<legend>Contraseña</legend>	
+
+			<div class="control-group">
+				<label for="password" class="control-label">
+				    Contraseña
+				</label>
+				<div class="controls">
+				 	<%= f.password_field(:password, class: "control input-xlarge")%>
+				</div>
+			</div>
+			<div class="control-group">
+				<label for="password_confirmation" class="control-label">
+				    Confirmación de contraseña:	
+				</label>
+				<div class="controls">
+				 	<%= f.password_field(:password_confirmation, class: "control input-xlarge")%>
+				</div>
+			</div>
+		</fieldset>
+		<div class="control-group">
+			<div class="controls">
+				<%= f.submit "Guardar", class: "btn btn-primary" %>
+				<%= link_to "Cancelar", users_path, class: "btn" %>
+				</div>
+		</div>
+	</div>
+</div>
+<%end%>

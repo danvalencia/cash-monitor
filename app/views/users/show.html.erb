@@ -1,0 +1,21 @@
+<h2><%="#{@user.first_name} #{@user.last_name}"%>    <small><%= link_to('Editar', edit_user_path(@user)) %></small></h2>
+
+<div class="row-fluid">
+	<div class="span12">
+		<fieldset>
+			<legend>Información General</legend>	
+			<div>
+				<span class="span6"><strong>Nombre:</strong> </span><span class="span6"><%= @user.first_name %> </span>
+			</div>
+			<div>
+				<span class="span6"><strong>Apellidos: </strong></span><span class="span6"><%= @user.last_name %></span>
+			</div>
+			<div>
+				<span class="span6"><strong>Email: </strong></span><span class="span6"><%= @user.email %></span>
+			</div>
+			<div>
+				<span class="span6"><strong>Teléfono: </strong></span><span class="span6"><%= number_to_phone(@user.phone_number, area_code: true)%></span>
+			</div>
+		</fieldset>
+	</div>
+</div>

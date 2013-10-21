@@ -50,6 +50,9 @@
           <div class="container-fluid nav-collapse">
             <ul class="nav">
               <li><%= link_to "Mis Maquinets", root_path  %></li>
+              <% if current_user.admin? %>
+                <li><%= link_to "Administración de Usuarios", users_path  %></li>
+              <% end %>
             </ul>
             <ul class="nav pull-right">
               <% if user_signed_in? %>

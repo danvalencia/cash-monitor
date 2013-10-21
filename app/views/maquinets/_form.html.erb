@@ -1,7 +1,7 @@
 <%= form_for(maquinet, html: {class: "form-horizontal"}) do |f| %>
 <% if maquinet.errors.any? %>
 	<div class="alert alert-error">
-		<%= render_error_messages %>
+		<%= render_error_messages_for(maquinet) %>
 	</div>
 <% end %>
 <div class="row-fluid">

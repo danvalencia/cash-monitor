@@ -11,6 +11,5 @@ class User < ActiveRecord::Base
   validates :email, :presence => true, :allow_blank => false, :uniqueness => true
   validates :first_name, :presence => true, :allow_blank => false
   validates :last_name, :presence => true, :allow_blank => false
-  validates :password, :presence => true, :allow_blank => false
   validates :phone_number, :presence => true, :allow_blank => false
 end
