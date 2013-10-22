@@ -1,7 +1,10 @@
+require "rvm/capistrano"
 require "bundler/capistrano"
 
 #default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+ssh_options[:auth_methods] = ["publickey"]
+ssh_options[:keys] = ["/Users/dvalencia/.ssh/keys/maquinet-server.pem"]
 
 set :application, "Cash Monitor"
 
@@ -12,6 +15,7 @@ set :scm_username,                "danvalencia"
 set :rails_env,                   "production"
 set :deploy_to,                   "/opt/cashmonitor"
 set :normalize_asset_timestamps,  false
+set :use_sudo,                    false
 
 set :user, "ubuntu"
 
@@ -32,7 +36,6 @@ set(:current_release) { fetch(:current_path) }
 set(:current_revision)  { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
 set(:latest_revision)   { capture("cd #{current_path}; git rev-parse --short HEAD").strip }
 set(:previous_revision) { capture("cd #{current_path}; git rev-parse --short HEAD@{1}").strip }
-
 default_environment["RAILS_ENV"] = 'production'
 
 # Use our ruby-1.9.2-p290@my_site gemset
@@ -52,7 +55,7 @@ namespace :deploy do
 
   desc "Setup your git-based deployment app"
   task :setup, :except => { :no_release => true } do
-    dirs = [cdeploy_to, shared_path]
+    dirs = [deploy_to, shared_path]
     dirs += shared_children.map { |d| File.join(shared_path, d) }
     run "#{try_sudo} mkdir -p #{dirs.join(' ')} && #{try_sudo} chmod g+w #{dirs.join(' ')}"
     run "git clone #{repository} #{current_path}"
@@ -90,7 +93,7 @@ namespace :deploy do
     # mkdir -p is making sure that the directories are there for some SCM's that don't
     # save empty folders
     run <<-CMD
-      rm -rf #{latest_release}/log #{latest_release}/public/system #{latest_release}/tmp/pids &&
+      sudo rm -rf #{latest_release}/log #{latest_release}/public/system #{latest_release}/tmp/pids &&
       mkdir -p #{latest_release}/public &&
       mkdir -p #{latest_release}/tmp &&
       ln -s #{shared_path}/log #{latest_release}/log &&
