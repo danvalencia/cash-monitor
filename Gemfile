@@ -23,8 +23,11 @@ end
 
 gem 'jquery-rails'
 
-gem 'capistrano', '~> 3.0.0', group: :development
-gem 'capistrano-rails', group: :development
+group :development do
+	gem 'capistrano',  '~> 2.15.5'
+end
+
+gem "rvm-capistrano"
 
 gem "twitter-bootstrap-rails"
 
