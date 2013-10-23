@@ -24,10 +24,13 @@ end
 gem 'jquery-rails'
 
 group :development do
-	gem 'capistrano',  '~> 2.15.5'
+	gem 'capistrano',  '~> 3.0.0'
+	gem "capistrano-bundler"
+	gem 'capistrano-rvm' #, '~> 0.0.2'
+  gem 'capistrano-rails' #, '~> 0.0.2'
+	# gem "rvm-capistrano"
 end
 
-gem "rvm-capistrano"
 
 gem "twitter-bootstrap-rails"
 
@@ -41,9 +44,6 @@ gem 'devise'
 
 # Use unicorn as the app server
 gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
+gem 'highline', '~> 1.6.20'
 # To use debugger
 # gem 'debugger'
