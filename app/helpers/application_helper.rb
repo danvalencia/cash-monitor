@@ -12,4 +12,11 @@ module ApplicationHelper
 		html_output.html_safe
 	end
 	
+  def print_machine_user(machine)
+    if(machine.user.nil?)
+      "N/A"
+    else
+      "#{machine.user.first_name} #{machine.user.last_name}"
+    end
+  end
 end
