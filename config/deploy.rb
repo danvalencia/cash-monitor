@@ -144,10 +144,13 @@ namespace :deploy do
   #   end
   # end
 
-  # desc "Zero-downtime restart of Unicorn"
-  # task :restart, :except => { :no_release => true } do
-  #   run "kill -s USR2 `cat #{unicorn_pid}`"
-  # end
+  desc "Zero-downtime restart of Unicorn"
+  task :restart do
+    on roles(:app), reject: lambda { |h| h.properties.no_release } do
+      execute :kill, "-s USR2 `cat #{unicorn_pid}`" 
+    end
+  end
+
 
   # desc "Start unicorn"
   # task :start, :except => { :no_release => true } do
