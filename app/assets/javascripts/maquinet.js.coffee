@@ -7,9 +7,5 @@ Maquinet =
 		$('#maquinet-tabs a').click (e) ->
 			e.preventDefault()
 			$(this).tab('show')
-			console.log("Related target: " + e.relatedTarget)
-			console.log("Target: " + e.target)
-			# $(e.relatedTarget).hide();	
-			# $(e.target).show();	
 
 Maquinet.initTabs()
