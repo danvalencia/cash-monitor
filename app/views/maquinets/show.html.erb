@@ -1,53 +1,62 @@
 <h2><%=@maquinet.name%>    <small><%= link_to('Editar', edit_maquinet_path(@maquinet)) %></small></h2>
 
-<div class="row-fluid">
-	<div class="span12">
-		<fieldset>
-			<legend>Información General</legend>	
-			<div>
-				<div class="span4"><strong>Identificador de Maquinet: </strong></strong> </div> <div class="span8"><%= @maquinet.machine_uuid %></div>
-			</div>
-			<div>
-				<div class="span4"><strong>Dirección: </strong></div><div class="span8"><%= @maquinet.location %> </div>
-			</div>
-			<div>
-				<div class="span4"><strong>Responsable: </strong></div><div class="span8"><%= @maquinet.contact_name %></div>
-			</div>
-			<div>
-				<div class="span4"><strong>Número de Contacto: </strong></div><div class="span8"><%= number_to_phone(@maquinet.contact_phone_number, area_code: true)%></div>
-			</div>
-			<div>
-				<div class="span4"><strong>Email de Contacto: </strong></div><div class="span8"><%= @maquinet.contact_email %></div>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Números Totales</legend>	
-			<div>
-				<div class="span4"><strong>Total de monedas:</strong> </div> <div class="span8"></div>
-			</div>
-			<div>
-				<div class="span4"><strong>Ganancia al Año: </strong></div> <div class="span8"></div>
-			</div>
-			<div>
-				<div class="span4"><strong>Ganancia al Mes: </strong></div> <div class="span8"></div>
-			</div>
-			<div>
-				<div class="span4"><strong>Ganancia al Día: </strong></div> <div class="span8"></div>
-			</div>
-		</fieldset>
-		<fieldset>
-			<legend>Configuración de Moneda</legend>
-			<div>
-				<div class="span4"><strong>Tiempo de moneda: </strong></div><div class="span8"><%= @maquinet.coin_time %> minutos</div>
-			</div>
-			<div>
-				<div class="span4"><strong>Valor de moneda: </strong></div><div class="span8"><%= number_to_currency(@maquinet.coin_value)%></div>
-			</div>
-		</fieldset>
+<ul id="maquinet-tabs" class="nav nav-tabs">
+  <li class="active"><a href="#maquinet-general-info" data-toggle="tab">Información de Maquinet</a></li>
+  <li><a href="#maquinet-graphs" data-toggle="tab">Gráficos</a></li>
+</ul>
+
+<div class="tab-content">
+	<div id="maquinet-general-info" class="tab-pane active row-fluid tab">
+		<div class="span12">
+			<fieldset>
+				<!-- <legend>Información General</legend>	 -->
+				<div>
+					<div class="span4"><strong>Identificador de Maquinet: </strong></strong> </div> <div class="span8"><%= @maquinet.machine_uuid %></div>
+				</div>
+				<div>
+					<div class="span4"><strong>Dirección: </strong></div><div class="span8"><%= @maquinet.location %> </div>
+				</div>
+				<div>
+					<div class="span4"><strong>Responsable: </strong></div><div class="span8"><%= @maquinet.contact_name %></div>
+				</div>
+				<div>
+					<div class="span4"><strong>Número de Contacto: </strong></div><div class="span8"><%= number_to_phone(@maquinet.contact_phone_number, area_code: true)%></div>
+				</div>
+				<div>
+					<div class="span4"><strong>Email de Contacto: </strong></div><div class="span8"><%= @maquinet.contact_email %></div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Números Totales</legend>	
+				<div>
+					<div class="span4"><strong>Total de monedas:</strong> </div> <div class="span8"></div>
+				</div>
+				<div>
+					<div class="span4"><strong>Ingresos Anuales: </strong></div> <div class="span8"></div>
+				</div>
+				<div>
+					<div class="span4"><strong>Ingresos Mensuales: </strong></div> <div class="span8"></div>
+				</div>
+				<div>
+					<div class="span4"><strong>Ingresos al Día: </strong></div> <div class="span8"></div>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Configuración de Moneda</legend>
+				<div>
+					<div class="span4"><strong>Tiempo de moneda: </strong></div><div class="span8"><%= @maquinet.coin_time %> minutos</div>
+				</div>
+				<div>
+					<div class="span4"><strong>Valor de moneda: </strong></div><div class="span8"><%= number_to_currency(@maquinet.coin_value)%></div>
+				</div>
+			</fieldset>
+		</div>
 	</div>
-	<div class="span6">
-		<fieldset>
-			<legend>Gráficos</legend>
-		</fieldset>		
+	<div id="maquinet-graphs" class="tab-pane row-fluid tab">
+		<div class="span12">
+			<fieldset>
+			</fieldset>		
+		</div>
 	</div>
+	
 </div>
