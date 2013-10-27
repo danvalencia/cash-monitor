@@ -32,6 +32,15 @@
 				 	<%= f.text_area(:location, class: "control input-xlarge", rows: 5)%>
 				</div>
 			</div>
+			<div class="control-group">
+				<label for="user_id" class="control-label">
+				    Usuario:	
+				</label>
+				<div class="controls">
+				 	<%= f.select(:user_id, users_for_select, {selected: user_id_for_maquinet(maquinet), include_blank: "No Asignado"})%>
+				</div>
+			</div>
+
 		</fieldset>
 		<fieldset>
 			<legend>Información de Contacto</legend>	

@@ -19,4 +19,8 @@ module ApplicationHelper
       "#{machine.user.first_name} #{machine.user.last_name}"
     end
   end
+
+  def users_for_select
+    User.find(:all).map{|u| ["#{u.first_name} #{u.last_name}", u.id]}
+  end
 end

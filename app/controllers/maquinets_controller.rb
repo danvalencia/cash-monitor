@@ -25,7 +25,10 @@ class MaquinetsController < ApplicationController
 
   def create
     if current_user.admin?
+      user_id = params[:maquinet][:user_id]
+      params[:maquinet].delete(:user_id) # To avoid mass-assignment error
       @maquinet = Maquinet.new(params[:maquinet])
+      @maquinet.user_id = user_id
       if @maquinet.save
         redirect_to @maquinet
       else
@@ -39,6 +42,8 @@ class MaquinetsController < ApplicationController
   def update
     @maquinet = Maquinet.find params[:id]
     if @maquinet
+      @maquinet.user_id = params[:maquinet][:user_id]
+      params[:maquinet].delete(:user_id) # To avoid mass-assignment error
       if(@maquinet.update_attributes params[:maquinet])
         redirect_to @maquinet
       else
