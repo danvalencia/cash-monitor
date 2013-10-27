@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  #before_filter :authenticate_admin!
+  before_filter :authenticate_admin!
   
   def new
     @user = User.new
