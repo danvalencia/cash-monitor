@@ -1,5 +1,6 @@
 class Api::V1::SessionsController < ApplicationController
-	def create
-		render json: {works: 'yay!'}
+
+	def update
+		render json: {works: 'Update!'}
 	end
 end

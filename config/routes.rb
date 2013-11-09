@@ -17,7 +17,7 @@ Cashmonitor2::Application.routes.draw do
 
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :sessions, only: :create
+      post 'machines/:machine_id/sessions/:session_id', to: 'sessions#update'
     end
   end
 end
