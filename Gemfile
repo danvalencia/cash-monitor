@@ -28,6 +28,8 @@ group :development do
 	gem "capistrano-bundler"
 	gem 'capistrano-rvm' #, '~> 0.0.2'
   gem 'capistrano-rails' #, '~> 0.0.2'
+  gem "mocha", :require => false
+  
 	# gem "rvm-capistrano"
 end
 
