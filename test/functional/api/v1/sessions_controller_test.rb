@@ -54,7 +54,7 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
     assert_not_nil json_response
   end
 
-  test "should return 500 when internal error occurs" do
+  test "should return 500 when internal error occurs on existing session" do
 
     my_machine = Machine.new do |m|
       m.machine_uuid = "8ddca8b3-6bf8-4cbc-8965-6255b0169cdb"
@@ -78,6 +78,31 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
     assert_not_nil json_response
   end
 
-  private
+  test "should return 500 when internal error occurs on new session" do
+
+    my_machine = Machine.new do |m|
+      m.machine_uuid = "8ddca8b3-6bf8-4cbc-8965-6255b0169cdb"
+    end
+    my_session = Session.new do |s|
+      s.session_uuid = "13d6058b-feb8-4767-a85c-bc616d1835ca"
+      s.coin_count = 1
+    end
+
+    machines_result_set = [ my_machine ] 
+    Machine.expects(:where).with(machine_uuid: my_machine.machine_uuid).returns(machines_result_set)
+
+    sessions_result_set = []
+    Session.expects(:where).with(session_uuid: my_session.session_uuid).returns(sessions_result_set)
+    Session.expects(:new).returns(my_session)
+    my_session.expects(:save).returns(false)
+
+    post :update, machine_uuid: my_machine.machine_uuid, session_uuid: my_session.session_uuid, coin_count: 3, format: :json
+    assert_response :error
+    assert_equal 500, @response.code.to_i
+    json_response = JSON.parse @response.body
+    assert_not_nil json_response
+  end
+
+
 
 end

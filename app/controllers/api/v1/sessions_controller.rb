@@ -21,6 +21,9 @@ class Api::V1::SessionsController < ApplicationController
 				if @machine_session.save
 					response_message = {message: 'Session Created'}
 					response_status = 201 
+				else
+					response_message = {message: 'Oops! seems like an internal error occured'}
+					response_status = 500 
 				end
 			else
 				if coin_count.nil?
