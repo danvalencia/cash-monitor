@@ -11,7 +11,6 @@ one:
   call_value: 1
   call_time: 1
   start_time: 2013-04-27 14:57:43
-  end_time: 2013-04-27 14:57:43
   session_uuid: 'a2115b80-ae50-409d-8fe2-33f44c72f6b4' 
 
 two:
@@ -26,3 +25,4 @@ two:
   call_time: 1
   start_time: 2013-04-27 14:57:43
   end_time: 2013-04-27 14:57:43
+  session_uuid: 'b2115b80-ae50-409d-8fe2-33f44c72c79b' 
