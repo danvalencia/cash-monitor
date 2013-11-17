@@ -12,16 +12,27 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
   end
 
   test "should return 201 with when machine id exists and sessions is new" do
-    post :create, machine_uuid: @valid_machine.machine_uuid, session_uuid: @new_session_uuid, format: :json
+    post :create, machine_uuid: @valid_machine.machine_uuid, session_uuid: @new_session_uuid, session_created_at: "2013-11-13 15:02:45", format: :json
     assert_response :success
     assert_equal 201, @response.code.to_i
     json_response = JSON.parse @response.body
     assert_not_nil json_response
-    assert_equal 1, Session.where(session_uuid: @new_session_uuid).first.coin_count
+    new_session = Session.where(session_uuid: @new_session_uuid).first
+    assert_equal 1, new_session.coin_count
+    assert_equal 11, new_session.session_created_at.month
+    assert_equal 13, new_session.session_created_at.day
+    assert_equal 2013, new_session.session_created_at.year
   end
 
   test "should return 400 when doing POST (create method) on an existing session ID" do
-    post :create, machine_uuid: @second_machine.machine_uuid, session_uuid: @existing_session.session_uuid, coin_count: 3, format: :json
+    post :create, machine_uuid: @second_machine.machine_uuid, session_uuid: @existing_session.session_uuid, format: :json
+    assert_equal 400, @response.code.to_i
+    json_response = JSON.parse @response.body
+    assert_not_nil json_response
+  end
+
+  test "should return 400 when session_created_at param not present" do
+    post :create, machine_uuid: @second_machine.machine_uuid, session_uuid: @new_session_uuid, format: :json
     assert_equal 400, @response.code.to_i
     json_response = JSON.parse @response.body
     assert_not_nil json_response
@@ -44,7 +55,7 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
     Session.expects(:new).returns(my_session)
     my_session.expects(:save).returns(false)
 
-    post :create, machine_uuid: my_machine.machine_uuid, session_uuid: my_session.session_uuid, coin_count: 3, format: :json
+    post :create, machine_uuid: my_machine.machine_uuid, session_uuid: my_session.session_uuid, session_created_at: "2013-11-13 15:02:45", format: :json
     assert_response :error
     assert_equal 500, @response.code.to_i
     json_response = JSON.parse @response.body
@@ -62,6 +73,16 @@ class Api::V1::SessionsControllerTest < ActionController::TestCase
 
     assert_equal 3, Session.where(session_uuid: @existing_session.session_uuid).first.coin_count
   end
+
+  # test "should close session if close_session parameter is in the request" do
+  #   put :update, machine_uuid: @second_machine.machine_uuid, session_uuid: @existing_session.session_uuid, close_session: true, format: :json
+  #   assert_response :success
+  #   assert_equal 200, @response.code.to_i
+  #   json_response = JSON.parse @response.body
+  #   assert_not_nil json_response
+
+  #   assert_not_nil Session.where(session_uuid: @existing_session.session_uuid).first.closed_at
+  # end
 
   test "should return 400 when session does not exist on update" do
     # Initially, existing session has a coin count of 1

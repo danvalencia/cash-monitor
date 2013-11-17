@@ -3,29 +3,36 @@ class Api::V1::SessionsController < ApplicationController
 	def create
 		session_uuid = params[:session_uuid]
 		machine_uuid = params[:machine_uuid]
-		puts "Session uuid: #{session_uuid}, Machine UUID: #{machine_uuid}"
-		machine = Machine.where(machine_uuid: machine_uuid).first
-		if machine.nil?
-			response_message = {message: "Machine with UUID #{machine_uuid} does not exist"}
-			response_status = 404 
+		session_created_at = params[:session_created_at]
+
+		if session_created_at.nil?
+			response_message = {message: "session_created_at is a required parameter"}
+			response_status = 400
 		else
-			@machine_session = Session.where(session_uuid: session_uuid).first
-			if @machine_session.nil?
-				@machine_session = Session.new	do |s|
-					s.session_uuid = session_uuid
-					s.machine = machine
-					s.coin_count = 1
-				end
-				if @machine_session.save
-					response_message = {message: 'Session Created'}
-					response_status = 201 
-				else
-					response_message = {message: 'Oops! seems like an internal error occured'}
-					response_status = 500 
-				end
+			machine = Machine.where(machine_uuid: machine_uuid).first
+			if machine.nil?
+				response_message = {message: "Machine with UUID #{machine_uuid} does not exist"}
+				response_status = 404 
 			else
-				response_message = {message: "Can't create session #{session_uuid} because it already exists"}
-				response_status = 400 
+				@machine_session = Session.where(session_uuid: session_uuid).first
+				if @machine_session.nil?
+					@machine_session = Session.new	do |s|
+						s.session_uuid = session_uuid
+						s.machine = machine
+						s.session_created_at = DateTime.parse session_created_at
+						s.coin_count = 1
+					end
+					if @machine_session.save
+						response_message = {message: 'Session Created'}
+						response_status = 201 
+					else
+						response_message = {message: 'Oops! seems like an internal error occured'}
+						response_status = 500 
+					end
+				else
+					response_message = {message: "Can't create session #{session_uuid} because it already exists"}
+					response_status = 400 
+				end
 			end
 		end
 		render json: response_message, status: response_status
