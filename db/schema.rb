@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131117210151) do
+ActiveRecord::Schema.define(:version => 20131005210734) do
 
   create_table "machines", :force => true do |t|
     t.integer  "user_id"
@@ -40,10 +40,9 @@ ActiveRecord::Schema.define(:version => 20131117210151) do
     t.integer  "call_time"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "session_uuid"
-    t.datetime "session_created_at"
   end
 
   create_table "statuses", :force => true do |t|
