@@ -22,13 +22,7 @@ class Api::V1::SessionsController < ApplicationController
 						s.start_time = DateTime.parse start_time
 						s.coin_count = 1
 					end
-					if @machine_session.save
-						response_message = {message: 'Session Created'}
-						response_status = 201 
-					else
-						response_message = {message: 'Oops! seems like an internal error occured'}
-						response_status = 500 
-					end
+					response_message, response_status = update_session 201
 				else
 					response_message = {message: "Can't create session #{session_uuid} because it already exists"}
 					response_status = 400 
@@ -59,7 +53,7 @@ class Api::V1::SessionsController < ApplicationController
 						end_time_obj = DateTime.parse end_time
 						if end_time_obj > @machine_session.start_time
 							@machine_session.end_time = end_time_obj
-							response_message, response_status = session_update
+							response_message, response_status = update_session
 						else
 							response_message = {message: 'End date is before start date'}
 							response_status = 400 
@@ -73,7 +67,7 @@ class Api::V1::SessionsController < ApplicationController
 					response_status = 400 
 				else
 					@machine_session.coin_count = coin_count
-					response_message, response_status = session_update
+					response_message, response_status = update_session
 				end
 			end
 		end
@@ -82,10 +76,10 @@ class Api::V1::SessionsController < ApplicationController
 
 	private
 
-	def session_update
+	def update_session(success_code=200)
 		if @machine_session.save
 			response_message = {message: 'Session Updated Successfully'}
-			response_status = 200 
+			response_status = success_code 
 		else
 			response_message = {message: 'Oops! seems like an internal error occured'}
 			response_status = 500 
