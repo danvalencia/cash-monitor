@@ -15,8 +15,8 @@ one:
 
 two:
   machine_id: 2
-  coin_count: 1
-  coin_value: 1
+  coin_count: 3
+  coin_value: 5
   coin_time: 1
   print_count: 1
   print_time: 1
