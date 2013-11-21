@@ -17,10 +17,13 @@ Cashmonitor2::Application.routes.draw do
 
   root :to => "maquinets#index"
 
+  get '/machines/:machine_uuid/earnings', to: "machines#earnings", defaults: {format: 'json'}
+  
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       put 'machines/:machine_uuid/sessions/:session_uuid', to: 'sessions#update'
       post 'machines/:machine_uuid/sessions/:session_uuid', to: 'sessions#create'
     end
   end
+
 end
