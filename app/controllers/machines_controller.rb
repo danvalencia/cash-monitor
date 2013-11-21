@@ -11,7 +11,7 @@ class MachinesController < ApplicationController
       sessions = machine.sessions
       earnings = sessions.map do |s| 
         unless s.start_time.nil?  
-          {start_date: s.start_time.to_formatted_s(:db), earnings: s.earnings}
+          {x: s.start_time.to_formatted_s(:db), y: s.earnings}
         end
       end
       response_message = earnings.select{|s| !s.nil?}.to_json
