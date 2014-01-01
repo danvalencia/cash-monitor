@@ -21,8 +21,9 @@ Cashmonitor2::Application.routes.draw do
   
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      put 'machines/:machine_uuid/sessions/:session_uuid', to: 'sessions#update'
+      put  'machines/:machine_uuid/sessions/:session_uuid', to: 'sessions#update'
       post 'machines/:machine_uuid/sessions/:session_uuid', to: 'sessions#create'
+      put  'machines/:machine_uuid', to: 'machines#update'
     end
   end
 
