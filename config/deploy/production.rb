@@ -1,7 +1,7 @@
 set :stage, :production
 
 set :scm,                         :git
-set :repo_url,                    "git@bitbucket.org:danvalencia/cashmonitor-2.git"
+set :repo_url,                    "git@bitbucket.org:maquinet/cashmonitor-2.git"
 set :branch,                      "master"
 set :scm_username,                "danvalencia"
 
