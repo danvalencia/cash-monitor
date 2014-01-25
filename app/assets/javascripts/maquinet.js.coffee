@@ -24,12 +24,12 @@ class Machine
           		.margin
           			top: 30
           			right: 60
-          			bottom: 50
-          			left: 70
+          			bottom: 100
+          			left: 100
 			
 			chart.x (d,i) -> 
 				i
-			
+
 			chart.xAxis
 				.axisLabel("Fecha")
 		      	.tickFormat (d) =>
@@ -39,7 +39,8 @@ class Machine
 		      			date = data_element.x
 		      			console.log "Data is #{@data[d]}"
 		      			# dx = @data[0].values[d] && @data[0].values[d][0] || 0
-		      			d3.time.format('%Y-%m-%d %H:%M:%S')(new Date(date))
+		      			d3.time.format('%d/%b')(new Date(date))
+		      	.rotateLabels(45)
 
 		    chart.yAxis
 		    	.axisLabel("Ingresos ($)")
