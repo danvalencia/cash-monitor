@@ -60,7 +60,7 @@ class Machine
 			{
 				values: @data
 				key: "Ingresos"
-				color: "#FF0000"
+				color: "#4DBD33"
 			}
 		]
 
