@@ -20,4 +20,24 @@ class Machine < ActiveRecord::Base
     self.machine_uuid = new_uuid
   end
 
+  def earnings_by(period)
+    if period == :month
+      date_format = "%m/%y"
+    else
+      date_format = "%m/%d/%y"
+    end
+
+    sessions_by_period = sessions.group_by do |s|
+      s.start_time.strftime date_format
+    end
+
+    earnings_by_period = sessions_by_period.map do |period, grouped_sessions|
+      earnings_by_session = grouped_sessions.reduce(0) do |sum,s|
+        sum + s.earnings
+      end
+      {x: period, y:earnings_by_session}
+    end
+
+    earnings_by_period
+  end
 end

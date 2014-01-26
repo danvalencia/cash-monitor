@@ -7,7 +7,8 @@ class Session < ActiveRecord::Base
   before_save :assign_coin_value
 
   def earnings
- 		coin_count * coin_value
+ 	return coin_count * coin_value unless coin_count.nil? or coin_value.nil?
+ 	0
   end
 
   def assign_coin_value
