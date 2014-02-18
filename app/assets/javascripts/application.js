@@ -19,4 +19,7 @@
 //= require historicalBar 
 //= require historicalBarChart
 //= require utils
+//= require dataStore
+//= require graph
+//= require maquinet
 //= require_tree .
