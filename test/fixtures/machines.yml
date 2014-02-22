@@ -2,7 +2,7 @@
 #  attr_accessible :coin_time, :coin_value, :location, :name, :user_id, :contact_id, :machine_uuid
 
 one:
-  user_id: 1
+  user: admin
   machine_uuid: '6b292123-2c83-450f-aa1d-02a041ce32f4'
   name: 'Mi Primer Maquinet'
   coin_value: 5
@@ -11,7 +11,7 @@ one:
   type: Maquinet
 
 two:
-  user_id: 2
+  user: admin
   machine_uuid: 'db05aed1-8c8f-4fb1-8343-a07bb89f6a13'
   name: 'Mi Segunda Maquinet'
   coin_value: 2

@@ -6,6 +6,10 @@ class Session < ActiveRecord::Base
 
   before_save :assign_coin_value
 
+  def self.find_existing_session_for_machine(session_uuid, machine_uuid)
+  	Session.joins(:machine).where("machines.machine_uuid = ? and session_uuid = ?", machine_uuid, session_uuid).readonly(false).first
+  end
+
   def earnings
  	return coin_count * coin_value unless coin_count.nil? or coin_value.nil?
  	0

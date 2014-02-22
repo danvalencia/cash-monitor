@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  machine_id: 1
+  machine: one
   coin_count: 1
   coin_value: 1
   coin_time: 1
@@ -14,7 +14,7 @@ one:
   session_uuid: 'a2115b80-ae50-409d-8fe2-33f44c72f6b4' 
 
 two:
-  machine_id: 2
+  machine: two
   coin_count: 3
   coin_value: 5
   coin_time: 1
@@ -26,3 +26,16 @@ two:
   start_time: 2013-04-27 14:57:43
   end_time: 2013-04-27 14:57:43
   session_uuid: 'b2115b80-ae50-409d-8fe2-33f44c72c79b' 
+
+three:
+  machine: two
+  coin_count: 1
+  coin_value: 1
+  coin_time: 1
+  print_count: 1
+  print_time: 1
+  call_count: 1
+  call_value: 1
+  call_time: 1
+  start_time: 2013-04-27 14:57:43
+  session_uuid: 'c9820987-ae50-409d-8fe2-33f44c72f6b4' 
