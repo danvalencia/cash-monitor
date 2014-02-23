@@ -8,24 +8,34 @@ class Graph
 			top: 30
 			right: 60
 			bottom: 100
-			left: 100
+			left: 60
 		@xLabel = @options.xLabel
 		@yLabel = @options.yLabel
 
 
 	drawGraph: () ->
 		@dataStore.load (data) =>
-			@data = data		
-			@buildGraph()
+			if @data		
+				@redrawGraph()
+			else
+				@buildGraph()
+			@data = data
 
+	redrawGraph: () ->
+    	# $(@containerId).empty()
+    	console.log "Redrawing Graph"
+    	d3.select(@containerId).datum(@buildData()).call @chart
+    	# nv.utils.windowResize(@chart.update)
+	
 	buildGraph: () ->
+		console.log "Building Graph"
 		nv.addGraph () =>
-			chart = nv.models[@graphFunc]().options
+			@chart = nv.models[@graphType]().options
 				margin: @margins
 				x: (d,i) ->
 					i
 
-			chart.xAxis
+			@chart.xAxis
 				.axisLabel(@xLabel)
 		      	.tickFormat (d) =>
 		      		data_element = @data[d]
@@ -34,14 +44,14 @@ class Graph
 		      			d3.time.format('%d/%b')(new Date(date))
 		      	.rotateLabels(45)
 
-		    chart.yAxis
+		    @chart.yAxis
 		    	.axisLabel(@yLabel)
         		.tickFormat (d) ->
         			'$' + d3.format(',f')(d)
 
         	$(@containerId).empty()
-			d3.select(@containerId).datum(@buildData()).call chart
-			nv.utils.windowResize(chart.update)
+			d3.select(@containerId).datum(@buildData()).call @chart
+			nv.utils.windowResize(@chart.update)
 
 	buildData: () ->
 		[
@@ -55,14 +65,38 @@ class Graph
 
 class BarGraph extends Graph
 	constructor: (@containerId, @dataStore, @options) ->
-		@graphFunc = "historicalBarChart"
+		@graphType = "historicalBarChart"
 		super
 
 class LineGraph extends Graph
 	constructor: (@containerId, @dataStore, @options) ->
-		@graphFunc = "lineChart"
+		@graphType = "lineChart"
 		super
+
+class MultiViewGraph extends Graph
+	constructor: (@containerId, @dataStore, @options) ->
+		@container = $(@containerId)
+		@graphTypes = @options.graphTypes
+		@changeViewElement = $(@options.changeViewSelector)
+		@graphs = {}
+		@init()
+
+	init: () ->
+		_.each @graphTypes, (type) =>
+			@graphs[type] = new Maquinet[type] @containerId, @dataStore, @options
+		@currentGraph = @graphs[@graphTypes[0]] 
+		@changeViewElement.change @onViewChange
+
+	onViewChange: (event) =>
+		window.onresize = () -> {}
+		@currentGraph = @graphs[event.target.value]		
+		@drawGraph()
+
+	drawGraph: () ->
+		@container.empty()
+		@currentGraph.drawGraph()
 
 window.Maquinet = window.Maquinet || {}
 window.Maquinet.BarGraph = window.Maquinet.BarGraph || BarGraph
 window.Maquinet.LineGraph = window.Maquinet.LineGraph || LineGraph
+window.Maquinet.MultiViewGraph = window.Maquinet.MultiViewGraph || MultiViewGraph

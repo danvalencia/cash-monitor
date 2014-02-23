@@ -2,7 +2,8 @@ class Machine
 	constructor: (@id) ->
 		@earningsEndpoint = "/machines/#{@id}/earnings"
 		@graphsTabName = "#maquinet-graphs"
-		@graphTypeSelector = $("#earnings-graph .graph-type")
+		@changeViewSelector = "#earnings-graph .graph-type"
+		@graphSurfaceSelector = "#earnings-graph svg"
 		@defaultGraph = "BarGraph"
 		@dataStore = new Maquinet.DataStore(@earningsEndpoint)
 		@init()
@@ -13,24 +14,27 @@ class Machine
 			$(this).tab('show')
 			tabName = $(e.target).attr "href"
 			if(@graphsTabName == tabName)
-				console.log "About to instantiate defaultGraph"
-				defaultGraph = new Maquinet[@defaultGraph] "#earnings-graph svg", @dataStore, 
+				@multiViewGraph = new Maquinet.MultiViewGraph @graphSurfaceSelector, @dataStore,
+					graphTypes: ["BarGraph", "LineGraph"]
+					changeViewSelector: @changeViewSelector
 					xLabel: "Fecha"
 					yLabel: "Ingresos"
-				defaultGraph.drawGraph()
+				@multiViewGraph.drawGraph()
 
 		_this = this
-		@graphTypeSelector.change () ->
-			console.log "This value: #{this.value}"
+
+
+		# @changeViewSelector.change () ->
+		# 	console.log "This value: #{this.value}"
 			
-			graph = new Maquinet[this.value] "#earnings-graph svg", _this.dataStore, 
-				xLabel: "Fecha"
-				yLabel: "Ingresos"
-			graph.drawGraph()
+		# 	graph = new Maquinet[this.value] "#earnings-graph svg", _this.dataStore, 
+		# 		xLabel: "Fecha"
+		# 		yLabel: "Ingresos"
+		# 	graph.drawGraph()
 
 
 
-			console.log "Graph type changed to #{this.value}"
+		# 	console.log "Graph type changed to #{this.value}"
 
 
 
