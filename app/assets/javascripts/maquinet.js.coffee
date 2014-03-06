@@ -10,12 +10,12 @@ class Machine
 		@earningsDataStore = new Maquinet.DataStore(@earningsEndpoint)
 		@init()
 
-	init: () -> 
+	init: () ->
 		$('#maquinet-tabs a').on 'shown', (e) =>
 			e.preventDefault()
 			$(this).tab('show')
 			tabName = $(e.target).attr "href"
-			switch tabName 
+			switch tabName
 				when @graphsTabName
 					@multiViewGraph = new Maquinet.MultiViewGraph @graphSurfaceSelector, @earningsDataStore,
 						graphTypes: ["BarGraph", "LineGraph"]
@@ -27,10 +27,10 @@ class Machine
 					$.ajax
 						url: @sessionsEndpoint
 						success: (data, status, xhr) =>
-							$(@sessionsTabName).html(xhr.responseText)	 
+							$(@sessionsTabName).html(xhr.responseText)
 					# alert 'sessions!'
 
-		$(@sessionsTabName).on 'ajax:success', (event, xhr, status) ->
-			$(this).html(xhr.responseText)
+		$(@sessionsTabName).on 'ajax:success', (event, response, status) ->
+			$(this).html(response)
 
 maquinet = new Machine(window.machine_uuid)

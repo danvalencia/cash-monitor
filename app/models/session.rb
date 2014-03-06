@@ -11,7 +11,7 @@ class Session < ActiveRecord::Base
   end
 
   def self.for_machine(machine_uuid, page)
-    Session.order('end_time DESC').joins(:machine).where("machines.machine_uuid = '#{machine_uuid}'")
+    Session.order('end_time DESC').joins(:machine).where("machines.machine_uuid = '#{machine_uuid}'").page(page)
   end
 
   def earnings

@@ -20,3 +20,4 @@
 		<% end %>
 	</tbody>
 </table>
+<%= paginate @sessions, remote: true, params: {controller: 'sessions'} %>
