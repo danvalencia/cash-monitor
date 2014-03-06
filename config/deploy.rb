@@ -1,5 +1,6 @@
 set :application, "CashMonitor"
 
+SSHKit.config.command_map[:rake] = "bundle exec rake"
 
 unicorn_pid = "/tmp/unicorn.pid"
 
