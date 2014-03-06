@@ -1,10 +1,10 @@
 set :application, "CashMonitor"
 
-SSHKit.config.command_map[:rake] = "bundle exec rake"
-
 unicorn_pid = "/tmp/unicorn.pid"
 
 set :unicorn_pid, unicorn_pid 
+
+set :rake, lambda { "#{fetch(:bundle_cmd, "bundle")} exec rake" }
 
 # set(:latest_release)  { fetch(:current_path) }
 # set(:release_path)    { fetch(:current_path) }
