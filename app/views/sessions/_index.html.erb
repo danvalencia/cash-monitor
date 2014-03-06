@@ -1,0 +1,22 @@
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>ID de Sesión</th>
+			<th>Inicio de Sesión</th>
+			<th>Fin de Sesión</th>
+			<th># Monedas</th>
+			<th>Total ($)</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @sessions.each do |s| %>
+			<tr>
+				<td><%=s.session_uuid%></td>
+				<td><%=format_date s.start_time %></td>
+				<td><%=format_date s.end_time %></td>
+				<td><%=s.coin_count%></td>
+				<td><%=s.earnings%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -23,4 +23,8 @@ module ApplicationHelper
   def users_for_select
     User.find(:all).map{|u| ["#{u.first_name} #{u.last_name}", u.id]}
   end
+
+  def format_date(date, format = '%d/%m/%y %k:%M:%S')
+    date.strftime format unless date.nil?
+  end
 end

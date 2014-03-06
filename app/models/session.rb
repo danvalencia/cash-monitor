@@ -10,9 +10,13 @@ class Session < ActiveRecord::Base
   	Session.joins(:machine).where("machines.machine_uuid = ? and session_uuid = ?", machine_uuid, session_uuid).readonly(false).first
   end
 
+  def self.for_machine(machine_uuid, page)
+    Session.order('end_time DESC').joins(:machine).where("machines.machine_uuid = '#{machine_uuid}'")
+  end
+
   def earnings
- 	return coin_count * coin_value unless coin_count.nil? or coin_value.nil?
- 	0
+   	return coin_count * coin_value unless coin_count.nil? or coin_value.nil?
+   	0
   end
 
   def assign_coin_value

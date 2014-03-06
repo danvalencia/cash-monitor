@@ -3,6 +3,7 @@
 <ul id="maquinet-tabs" class="nav nav-tabs">
   <li class="active"><a href="#maquinet-general-info" data-toggle="tab">Información General</a></li>
   <li><a href="#maquinet-graphs" data-toggle="tab">Gráficos</a></li>
+  <li><a href="#maquinet-sessions" data-toggle="tab">Sesiones</a></li>
 </ul>
 
 <div class="tab-content">
@@ -30,7 +31,7 @@
 				</div>
 			</fieldset>
 			<fieldset>
-				<legend>Números Totales</legend>	
+				<legend>Números Totales</legend>
 				<div>
 					<div class="span4"><strong>Total de monedas:</strong> </div> <div class="span8"></div>
 				</div>
@@ -64,6 +65,9 @@
 			  <svg style="height: 500px;"></svg>
 		</div>
 	</div>
+	<div id="maquinet-sessions" class="tab-pane row-fluid tab">
+
+  </div>
 </div>
 <%= javascript_tag do -%>
 	window.machine_uuid = "<%= @maquinet.machine_uuid %>";

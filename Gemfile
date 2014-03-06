@@ -29,7 +29,7 @@ group :development do
 	gem 'capistrano-rvm' #, '~> 0.0.2'
   gem 'capistrano-rails' #, '~> 0.0.2'
   gem "mocha", :require => false
-  
+
 	# gem "rvm-capistrano"
 end
 
@@ -49,3 +49,6 @@ gem 'unicorn'
 gem 'highline', '~> 1.6.20'
 # To use debugger
 # gem 'debugger'
+
+# For pagination
+gem 'kaminari'

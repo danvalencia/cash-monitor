@@ -1,24 +1,36 @@
 class Machine
 	constructor: (@id) ->
 		@earningsEndpoint = "/machines/#{@id}/earnings"
+		@sessionsEndpoint = "/machines/#{@id}/sessions"
 		@graphsTabName = "#maquinet-graphs"
+		@sessionsTabName = "#maquinet-sessions"
 		@changeViewSelector = "#earnings-graph .graph-type"
 		@graphSurfaceSelector = "#earnings-graph svg"
 		@defaultGraph = "BarGraph"
-		@dataStore = new Maquinet.DataStore(@earningsEndpoint)
+		@earningsDataStore = new Maquinet.DataStore(@earningsEndpoint)
 		@init()
 
 	init: () -> 
-		$('#maquinet-tabs a').click (e) =>
+		$('#maquinet-tabs a').on 'shown', (e) =>
 			e.preventDefault()
 			$(this).tab('show')
 			tabName = $(e.target).attr "href"
-			if(@graphsTabName == tabName)
-				@multiViewGraph = new Maquinet.MultiViewGraph @graphSurfaceSelector, @dataStore,
-					graphTypes: ["BarGraph", "LineGraph"]
-					changeViewSelector: @changeViewSelector
-					xLabel: "Fecha"
-					yLabel: "Ingresos"
-				@multiViewGraph.drawGraph()
+			switch tabName 
+				when @graphsTabName
+					@multiViewGraph = new Maquinet.MultiViewGraph @graphSurfaceSelector, @earningsDataStore,
+						graphTypes: ["BarGraph", "LineGraph"]
+						changeViewSelector: @changeViewSelector
+						xLabel: "Fecha"
+						yLabel: "Ingresos"
+					@multiViewGraph.drawGraph()
+				when @sessionsTabName
+					$.ajax
+						url: @sessionsEndpoint
+						success: (data, status, xhr) =>
+							$(@sessionsTabName).html(xhr.responseText)	 
+					# alert 'sessions!'
+
+		$(@sessionsTabName).on 'ajax:success', (event, xhr, status) ->
+			$(this).html(xhr.responseText)
 
 maquinet = new Machine(window.machine_uuid)

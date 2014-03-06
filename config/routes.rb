@@ -11,13 +11,12 @@ Cashmonitor2::Application.routes.draw do
 
   resources :users
 
-  resources :maquinets
-
-  resources :sessions, only: [:index]
+  resources :maquinets 
 
   root :to => "maquinets#index"
 
   get '/machines/:machine_uuid/earnings', to: "machines#earnings", defaults: {format: 'json', group_by: 'day'}
+  get '/machines/:machine_uuid/sessions', to: "sessions#index", defaults: {page: 1}
   
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
