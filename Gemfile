@@ -24,9 +24,9 @@ end
 gem 'jquery-rails'
 
 group :development do
-	gem 'capistrano',  '~> 3.0.0'
-	gem "capistrano-bundler"
-	gem 'capistrano-rvm' #, '~> 0.0.2'
+	gem 'capistrano',  '~> 3.1'
+	gem 'capistrano-bundler', '~> 1.1.2'
+	gem 'capistrano-rvm', '~> 0.1.0'
   gem 'capistrano-rails' #, '~> 0.0.2'
   gem "mocha", :require => false
 
