@@ -50,6 +50,7 @@ class Graph
         			'$' + d3.format(',f')(d)
 
         	@chart.forceY 0
+        	
 			d3.select(@containerId).datum(@buildData()).call @chart
 			nv.utils.windowResize(@chart.update)
 
@@ -65,7 +66,7 @@ class Graph
 
 class BarGraph extends Graph
 	constructor: (@containerId, @dataStore, @options) ->
-		@graphType = "historicalBarChart"
+		@graphType = "discreteBarChart"
 		super
 
 class LineGraph extends Graph

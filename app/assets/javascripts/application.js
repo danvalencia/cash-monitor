@@ -17,8 +17,7 @@
 //= require d3.v3
 //= require nv.d3
 //= require axis 
-//= require historicalBar 
-//= require historicalBarChart
+//= require discreteBarChart
 //= require utils
 //= require dataStore
 //= require graph
