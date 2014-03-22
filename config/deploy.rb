@@ -153,15 +153,19 @@ namespace :deploy do
   end
 
 
-  # desc "Start unicorn"
-  # task :start, :except => { :no_release => true } do
-  #   run "cd #{current_path} ; bundle exec unicorn_rails -c config/unicorn.rb -D"
-  # end
+  desc "Start unicorn"
+  task :start do
+    on roles(:app), reject: lambda { |h| h.properties.no_release } do
+      execute "cd #{current_path} && /usr/local/rvm/bin/rvm default do bundle exec unicorn_rails -c config/unicorn.rb -D" 
+    end
+  end
 
-  # desc "Stop unicorn"
-  # task :stop, :except => { :no_release => true } do
-  #   run "kill -s QUIT `cat #{unicorn_pid}`"
-  # end
+  desc "Stop unicorn"
+  task :stop do
+    on roles(:app), reject: lambda { |h| h.properties.no_release } do
+      execute :kill, "-s QUIT `cat #{unicorn_pid}`" 
+    end
+  end
 
   # namespace :rollback do
   #   desc "Moves the repo back to the previous version of HEAD"
