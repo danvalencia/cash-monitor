@@ -156,7 +156,7 @@ namespace :deploy do
   desc "Start unicorn"
   task :start do
     on roles(:app), reject: lambda { |h| h.properties.no_release } do
-      execute "cd #{current_path} && /usr/local/rvm/bin/rvm default do bundle exec unicorn_rails -c config/unicorn.rb -D" 
+      execute "cd #{current_path} && /usr/local/rvm/bin/rvm default do bundle exec unicorn_rails -c config/unicorn.rb -E production -D" 
     end
   end
 
