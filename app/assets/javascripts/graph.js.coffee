@@ -49,6 +49,7 @@ class Graph
         		.tickFormat (d) ->
         			'$' + d3.format(',f')(d)
 
+        	@chart.forceY 0
 			d3.select(@containerId).datum(@buildData()).call @chart
 			nv.utils.windowResize(@chart.update)
 
