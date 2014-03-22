@@ -49,14 +49,17 @@
 
           <div class="container-fluid nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Mis Maquinets", root_path  %></li>
+              <li>
+                <%= link_to root_path do %>
+                  <i class="icon-white icon-home">  Mis Maquinets</i>
+                <% end %>
+              </li>
               <% if current_user.admin? %>
-                <li><%= link_to "Administración de Usuarios", users_path  %></li>
-              <% end %>
-            </ul>
-            <ul class="nav pull-right">
-              <% if user_signed_in? %>
-                <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+                <li>
+                  <%= link_to users_path do  %>
+                    <i class="icon-white icon-user">  Administración de Usuarios</i>
+                  <% end %>
+                </li>
               <% end %>
             </ul>
           </div><!--/.nav-collapse -->
