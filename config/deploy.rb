@@ -152,6 +152,11 @@ namespace :deploy do
     end
   end
 
+  desc "Force a restart of Unicorn"
+  task :force_restart do
+    stop
+    start
+  end
 
   desc "Start unicorn"
   task :start do
