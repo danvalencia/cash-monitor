@@ -58,11 +58,21 @@
 	</div>
 	<div id="maquinet-graphs" class="tab-pane row-fluid tab">
 		<div id="earnings-graph" class="span12">
-			<select name="graph-type" class="graph-type">
-				<option value="BarGraph">Barras</option>
-				<option value="LineGraph">Líneas</option>
-			</select>
+			<div class="row-fluid">
+				<div class="span6">
+					<label for="graph-type">Tipo de Gráfico</label>
+					<select name="graph-type" class="graph-type">
+						<option value="BarGraph">Barras</option>
+						<option value="LineGraph">Líneas</option>
+					</select>
+				</div>
+				<div class="span3">
+					<div id="earnings-slider"></div>
+				</div>
+			</div>
+			<div class="row-fluid">
 			  <svg style="height: 500px;"></svg>
+	  	    </div>
 		</div>
 	</div>
 	<div id="maquinet-sessions" class="tab-pane row-fluid tab">
