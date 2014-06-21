@@ -1,3 +1,5 @@
+#= require router
+
 class Machine
 	constructor: (@id) ->
 		@earningsEndpoint = "/machines/#{@id}/earnings"
@@ -9,12 +11,19 @@ class Machine
 		@earningsSliderSelector = "#earnings-slider"
 		@tabsSelector = "#maquinet-tabs a"
 		@defaultGraph = "BarGraph"
+		@popUpSelector = '.popup-selector'
 		@earningsDataStore = new Maquinet.DataStore @earningsEndpoint,
 			observer: @graphSurfaceSelector
-
+		@router = new Router
 		@init()
 
 	init: () ->
+		@router
+			.route 'grafico/barras', ->
+				alert "Barras!!!"
+			.route 'grafico/lineas', ->
+				alert "Lineas!!!"
+
 		$(@graphSurfaceSelector).on 'cashmonitor.graphDataLoaded', (e, data) =>
 			for daysEarnings in data
 				console.log "x: #{daysEarnings.x}, y: #{daysEarnings.y}"
@@ -32,7 +41,7 @@ class Machine
 					days: 1
 
 		$(@tabsSelector).on 'shown', (e) =>
-			e.preventDefault()
+			#e.preventDefault()
 			$(this).tab('show')
 			tabName = $(e.target).attr "href"
 			switch tabName
@@ -60,5 +69,15 @@ class Machine
 			console.log "Values have changed. min: #{data.values.min}, max: #{data.values.max}"
 			console.log @multiViewGraph
 			@multiViewGraph.redrawGraph([data.values.min, data.values.max])
+
+		$(@popUpSelector).popover
+			placement: 'bottom'
+			trigger: 'click'
+			html: true
+			title: 'Tipo de Gráfico'
+			content: '<div><a href="#grafico/barras">Barras</a></div><div><a href="#grafico/lineas">Líneas</a></div>'
+			delay: 
+				show: 100
+				hide: 100
 
 maquinet = new Machine(window.machine_uuid)

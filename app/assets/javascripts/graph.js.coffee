@@ -110,6 +110,9 @@ class MultiViewGraph extends Graph
 		@container.empty()
 		@currentGraph.drawGraph()
 
+	redrawGraph: (range) ->
+		@currentGraph.redrawGraph(range)
+
 window.Maquinet = window.Maquinet || {}
 window.Maquinet.BarGraph = window.Maquinet.BarGraph || BarGraph
 window.Maquinet.LineGraph = window.Maquinet.LineGraph || LineGraph
