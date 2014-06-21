@@ -2,6 +2,8 @@ require 'api_constraints'
 
 Cashmonitor2::Application.routes.draw do
 
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
+
   devise_for :users
 
   devise_scope :user do

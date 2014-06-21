@@ -29,9 +29,13 @@ group :development do
 	gem 'capistrano-bundler', '~> 1.1.2'
 	gem 'capistrano-rvm', '~> 0.1.0'
   gem 'capistrano-rails' #, '~> 0.0.2'
-  gem "mocha", :require => false
 
 	# gem "rvm-capistrano"
+end
+
+group :test, :development do
+  gem 'mocha', :require => false
+  gem 'jasmine-rails'
 end
 
 

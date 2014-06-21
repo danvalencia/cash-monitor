@@ -6,7 +6,6 @@ class Machine
 		@sessionsEndpoint = "/machines/#{@id}/sessions"
 		@graphsTabName = "#maquinet-graphs"
 		@sessionsTabName = "#maquinet-sessions"
-		@changeViewSelector = "#earnings-graph .graph-type"
 		@graphSurfaceSelector = "#earnings-graph svg"
 		@earningsSliderSelector = "#earnings-slider"
 		@tabsSelector = "#maquinet-tabs a"
@@ -18,11 +17,14 @@ class Machine
 		@init()
 
 	init: () ->
+
 		@router
-			.route 'grafico/barras', ->
-				alert "Barras!!!"
-			.route 'grafico/lineas', ->
-				alert "Lineas!!!"
+			.route 'maquinet-graphs', (args) =>
+        if $('#maquinet-graphs').hasClass('active')
+          @multiViewGraph.changeGraphType args['graphType']
+        else
+          $('#maquinet-graphs').tab('show')
+        $(@popUpSelector).popover('hide')
 
 		$(@graphSurfaceSelector).on 'cashmonitor.graphDataLoaded', (e, data) =>
 			for daysEarnings in data
@@ -41,7 +43,6 @@ class Machine
 					days: 1
 
 		$(@tabsSelector).on 'shown', (e) =>
-			#e.preventDefault()
 			$(this).tab('show')
 			tabName = $(e.target).attr "href"
 			switch tabName
@@ -57,17 +58,11 @@ class Machine
 						url: @sessionsEndpoint
 						success: (data, status, xhr) =>
 							$(@sessionsTabName).html(xhr.responseText)
-					# alert 'sessions!'
 
 		$(@sessionsTabName).on 'ajax:success', (event, response, status) ->
 			$(this).html(response)
 
-		$(@changeViewSelector).on 'change', (event) =>
-			@multiViewGraph.changeGraphType event.target.value
-
 		$(@earningsSliderSelector).on "valuesChanged", (e, data) =>
-			console.log "Values have changed. min: #{data.values.min}, max: #{data.values.max}"
-			console.log @multiViewGraph
 			@multiViewGraph.redrawGraph([data.values.min, data.values.max])
 
 		$(@popUpSelector).popover
@@ -75,9 +70,8 @@ class Machine
 			trigger: 'click'
 			html: true
 			title: 'Tipo de Gráfico'
-			content: '<div><a href="#grafico/barras">Barras</a></div><div><a href="#grafico/lineas">Líneas</a></div>'
-			delay: 
-				show: 100
-				hide: 100
+			content: '<div><a href="#maquinet-graphs;graphType=BarGraph">Barras</a></div><div><a href="#maquinet-graphs;graphType=LineGraph">Líneas</a></div>'
 
 maquinet = new Machine(window.machine_uuid)
+$(window).trigger('hashchange')
+
