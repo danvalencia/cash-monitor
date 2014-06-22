@@ -86,3 +86,7 @@
 <%= javascript_tag do -%>
 	window.machine_uuid = "<%= @maquinet.machine_uuid %>";
 <% end -%>
+
+<% content_for :footer do %>
+   <%= javascript_include_tag "maquinet" %>
+<% end %>
