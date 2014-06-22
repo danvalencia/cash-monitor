@@ -2,6 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$graphPadding: 30px;
+
 a.popup-selector {
 	cursor: pointer
+}
+
+.ui-rangeSlider {
+	padding-top: 0px;
+}
+
+#earnings-graph {
+	padding-left: $graphPadding;
+	padding-right: $graphPadding;
 }

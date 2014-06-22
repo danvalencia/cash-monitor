@@ -10,6 +10,9 @@
  *
  *= require_self
  *= require_tree .
+ *= require nv.d3
+ *= require classic-min
+
  */
 
 .login_form {
