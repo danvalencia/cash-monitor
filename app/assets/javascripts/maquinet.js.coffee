@@ -21,6 +21,7 @@ class Machine
 		@router
 			.route 'maquinet-graphs', (args) =>
         if $('#maquinet-graphs').hasClass('active')
+          $("#earnings-graph-type").html("#{args['graphTitle']}")
           @multiViewGraph.changeGraphType args['graphType']
         else
           $('#maquinet-graphs').tab('show')
@@ -70,7 +71,7 @@ class Machine
 			trigger: 'click'
 			html: true
 			title: 'Tipo de Gráfico'
-			content: '<div><a href="#maquinet-graphs;graphType=BarGraph">Barras</a></div><div><a href="#maquinet-graphs;graphType=LineGraph">Líneas</a></div>'
+			content: '<div><a href="#maquinet-graphs;graphType=BarGraph,graphTitle=Barras">Barras</a></div><div><a href="#maquinet-graphs;graphType=LineGraph,graphTitle=Líneas">Líneas</a></div>'
 
 maquinet = new Machine(window.machine_uuid)
 $(window).trigger('hashchange')
