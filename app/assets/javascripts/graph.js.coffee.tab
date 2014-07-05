@@ -1,14 +1,9 @@
-# Graph 
-#
-# Base class for all types of graphs.
-# You typically would use a subclass of this class and set the @graphType instance variable to the graph type of your choice. 
-#
 class Graph
-  constructor: (@containerId, @dataStore, @options) ->
-    @count = 1
-    @spinnerSelector = '#spinner'
-    @spinnerMarkup = "<div id='spinner'></div>"
-    @init()
+    constructor: (@containerId, @dataStore, @options) ->
+      @count = 1
+      @spinnerSelector = '#spinner'
+      @spinnerMarkup = "<div id='spinner'></div>"
+      @init()
 
   init: ->
     console.log @options    
@@ -78,7 +73,6 @@ class Graph
     data = @dataStore.getData()
     minDate = range[0]
     maxDate = range[1]
-    console.log "Range from: #{minDate} to: #{maxDate}"
     filteredData = data.filter (d) ->
       date = new Date(d.x)
       date >= minDate and date <= maxDate
@@ -91,30 +85,17 @@ class Graph
   hideSpinner: (element) =>
       $("#{@container} > #{@spinnerSelector}").remove()
 
-# BarGraph
-#
-# Your typical bar chart
-#
+
 class BarGraph extends Graph
   constructor: (@containerId, @dataStore, @options) ->
     @graphType = "discreteBarChart"
     super
 
-# LineGraph
-#
-# Your typical line chart
-#
 class LineGraph extends Graph
   constructor: (@containerId, @dataStore, @options) ->
     @graphType = "lineChart"
     super
 
-
-# MultiViewGraph
-# 
-# This graph can be used to display different graphs out of the same data.
-# For example, you could use this class to visualize the data using a BarGraph and switch to a LineGraph or PieChart.
-#
 class MultiViewGraph extends Graph
   constructor: (@containerId, @dataStore, @options) ->
     @container = $(@containerId)

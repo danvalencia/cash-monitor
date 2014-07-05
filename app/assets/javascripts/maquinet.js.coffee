@@ -70,6 +70,7 @@ class Machine
           yLabel: "Ingresos"
         @multiViewGraph.drawGraph()
       when @sessionsTabName
+        @showSpinnerOnElement "#earnings-graph"
         $.ajax
           url: @sessionsEndpoint
           success: (data, status, xhr) =>
@@ -82,7 +83,6 @@ class Machine
       html: true
       title: 'Tipo de Gráfico'
       content: '<div><a href="#maquinet-graphs;graphType=BarGraph,graphTitle=Barras">Barras</a></div><div><a href="#maquinet-graphs;graphType=LineGraph,graphTitle=Líneas">Líneas</a></div>'
-
 
 maquinet = new Machine(window.machine_uuid)
 $(window).trigger('hashchange')
