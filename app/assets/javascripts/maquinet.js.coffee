@@ -1,10 +1,4 @@
 #= require router
-#= require d3.v3
-#= require nv.d3
-#= require axis 
-#= require discreteBarChart
-#= require jQDateRangeSlider-min
-#= require utils
 #= require dataStore
 #= require graph
 
@@ -70,7 +64,7 @@ class Machine
           yLabel: "Ingresos"
         @multiViewGraph.drawGraph()
       when @sessionsTabName
-        @showSpinnerOnElement "#earnings-graph"
+        # @showSpinnerOnElement "#earnings-graph"
         $.ajax
           url: @sessionsEndpoint
           success: (data, status, xhr) =>
