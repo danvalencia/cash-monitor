@@ -56,7 +56,7 @@ class Graph
       @chart.xAxis
         .axisLabel(@xLabel)
         .tickFormat (d) =>
-          dataElement = @data[d]
+          dataElement = @dataSubset[d]
           if dataElement
             date = dataElement.x
             d3.time.format('%d/%b')(new Date(date))
