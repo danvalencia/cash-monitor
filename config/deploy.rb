@@ -154,8 +154,8 @@ namespace :deploy do
 
   desc "Force a restart of Unicorn"
   task :force_restart do
-    stop
-    start
+    invoke 'stop'
+    invoke 'start'
   end
 
   desc "Start unicorn"
